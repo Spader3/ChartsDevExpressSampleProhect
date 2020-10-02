@@ -5,8 +5,19 @@
         x:Class="CandleStick2DChart.Window1" 
         Title="Window1" 
         Height="350" Width="620">
+    <Window.DataContext>
+        <local:ChartViewModel/>
+    </Window.DataContext>
     <Grid>
-        <dxc:ChartControl Name="chartControl1">
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <dxc:ChartControl Name="chartControl1" Grid.Column="0" Grid.Row="0">
             <dxc:ChartControl.DataContext>
                 <local:ChartViewModel/>
             </dxc:ChartControl.DataContext>
@@ -51,6 +62,80 @@
                     <dxc:AxisY2D>
                         <dxc:AxisY2D.WholeRange>
                             <dxc:Range dxc:AxisY2D.AlwaysShowZeroLevel="False"/>
+                        </dxc:AxisY2D.WholeRange>
+                    </dxc:AxisY2D>
+                </dxc:XYDiagram2D.AxisY>
+            </dxc:XYDiagram2D>
+        </dxc:ChartControl>
+        <dxc:ChartControl Name="chartControl2" Grid.Column="1" Grid.Row="0">
+                <dxc:ChartControl.Diagram>
+                    <dxc:XYDiagram2D>
+                        <dxc:XYDiagram2D.Series>
+                            <dxc:LineSeries2D DisplayName="First Series" MarkerVisible="False">
+                                <dxc:LineSeries2D.LineStyle>
+                                    <dxc:LineStyle Thickness="4" />
+                                </dxc:LineSeries2D.LineStyle>
+                                <dxc:LineSeries2D.Points>
+                                    <dxc:SeriesPoint Argument="A" Value="1" />
+                                    <dxc:SeriesPoint Argument="B" Value="3" />
+                                    <dxc:SeriesPoint Argument="C" Value="7" />
+                                    <dxc:SeriesPoint Argument="D" Value="4" />
+                                </dxc:LineSeries2D.Points>
+                            </dxc:LineSeries2D>
+                            <dxc:LineSeries2D DisplayName="Second Series" MarkerVisible="False">
+                                <dxc:LineSeries2D.LineStyle>
+                                    <dxc:LineStyle Thickness="4" />
+                                </dxc:LineSeries2D.LineStyle>
+                                <dxc:LineSeries2D.Points>
+                                    <dxc:SeriesPoint Argument="A" Value="2" />
+                                    <dxc:SeriesPoint Argument="B" Value="2" />
+                                    <dxc:SeriesPoint Argument="C" Value="5" />
+                                    <dxc:SeriesPoint Argument="D" Value="4" />
+                                </dxc:LineSeries2D.Points>
+                            </dxc:LineSeries2D>
+                        </dxc:XYDiagram2D.Series>
+                    </dxc:XYDiagram2D>
+                </dxc:ChartControl.Diagram>
+                <dxc:ChartControl.Legend>
+                    <dxc:Legend />
+                </dxc:ChartControl.Legend>
+            </dxc:ChartControl>
+        <dxc:ChartControl Name="chartControl3" Grid.Column="0" Grid.Row="1">
+            <dxc:XYDiagram2D>
+                <dxc:StockSeries2D ArgumentScaleType="DateTime" 
+                                   DataSource="{Binding Data}" 
+                                   ArgumentDataMember="Date"
+                                   OpenValueDataMember="Open"
+                                   HighValueDataMember="High"
+                                   LowValueDataMember="Low"
+                                   CloseValueDataMember="Close"
+                                   LabelsVisibility="False">
+                    <dxc:StockSeries2D.Label>
+                        <dxc:SeriesLabel TextPattern="{}{HV}"/>
+                    </dxc:StockSeries2D.Label>
+                    <dxc:StockSeries2D.Model>
+                        <dxc:FlatStock2DModel/>
+                    </dxc:StockSeries2D.Model>
+                    <dxc:StockSeries2D.ReductionOptions>
+                        <dxc:ReductionStockOptions Level="CloseValue" 
+                                                   ColorMode="OpenToCloseValue"/>
+                    </dxc:StockSeries2D.ReductionOptions>
+                </dxc:StockSeries2D>
+                <dxc:XYDiagram2D.AxisX>
+                    <dxc:AxisX2D>
+                        <dxc:AxisX2D.Label>
+                            <dxc:AxisLabel TextPattern="{}{A:MMM d}"/>
+                        </dxc:AxisX2D.Label>
+                        <dxc:AxisX2D.DateTimeScaleOptions>
+                            <dxc:ManualDateTimeScaleOptions AutoGrid="False" 
+                                                            GridSpacing="1"/>
+                        </dxc:AxisX2D.DateTimeScaleOptions>
+                    </dxc:AxisX2D>
+                </dxc:XYDiagram2D.AxisX>
+                <dxc:XYDiagram2D.AxisY>
+                    <dxc:AxisY2D>
+                        <dxc:AxisY2D.WholeRange>
+                            <dxc:Range dxc:AxisY2D.AlwaysShowZeroLevel="False" />
                         </dxc:AxisY2D.WholeRange>
                     </dxc:AxisY2D>
                 </dxc:XYDiagram2D.AxisY>

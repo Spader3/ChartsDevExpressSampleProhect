@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Windows;
+using System.Xml.Serialization;
 
 namespace CandleStick2DChart
 {
@@ -10,10 +13,12 @@ namespace CandleStick2DChart
         {
             InitializeComponent();
         }
+       
     }
     public class ChartViewModel
     {
         public ObservableCollection<DataPoint> Data { get; private set; }
+
         public ChartViewModel()
         {
             Random random = new Random();
@@ -24,6 +29,7 @@ namespace CandleStick2DChart
                 var time = new DateTime(2019, 1, 1).AddMinutes(i);
                 Data.Add(new DataPoint(time, random.Next(24,33), random.Next(24, 33), random.Next(24, 33), random.Next(24, 33)));
             }
+
         }
     }
     public class DataPoint
