@@ -101,7 +101,13 @@
                 </dxc:ChartControl.Legend>
             </dxc:ChartControl>
         <dxc:ChartControl Name="chartControl3" Grid.Column="0" Grid.Row="1">
-            <dxc:XYDiagram2D>
+            <dxc:XYDiagram2D  EnableAxisXNavigation="True"
+        EnableAxisYNavigation="True">
+                <dxc:XYDiagram2D.NavigationOptions>
+                    <dxc:NavigationOptions 
+            AxisXMaxZoomPercent="2000" 
+            AxisYMaxZoomPercent="2000"/>
+                </dxc:XYDiagram2D.NavigationOptions>
                 <dxc:StockSeries2D ArgumentScaleType="DateTime" 
                                    DataSource="{Binding Data}" 
                                    ArgumentDataMember="Date"
