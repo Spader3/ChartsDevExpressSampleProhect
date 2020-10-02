@@ -1,0 +1,60 @@
+﻿<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+        xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/charts" 
+        xmlns:local="clr-namespace:CandleStick2DChart"
+        x:Class="CandleStick2DChart.Window1" 
+        Title="Window1" 
+        Height="350" Width="620">
+    <Grid>
+        <dxc:ChartControl Name="chartControl1">
+            <dxc:ChartControl.DataContext>
+                <local:ChartViewModel/>
+            </dxc:ChartControl.DataContext>
+            <dxc:XYDiagram2D EnableAxisXNavigation="True"
+        EnableAxisYNavigation="True">
+                <dxc:XYDiagram2D.NavigationOptions>
+                    <dxc:NavigationOptions 
+            AxisXMaxZoomPercent="2000" 
+            AxisYMaxZoomPercent="2000"/>
+                </dxc:XYDiagram2D.NavigationOptions>
+                <dxc:CandleStickSeries2D ArgumentScaleType="DateTime"
+                                         DataSource="{Binding Data}"
+                                         ArgumentDataMember="Date"
+                                         OpenValueDataMember="Open"
+                                         HighValueDataMember="High"
+                                         LowValueDataMember="Low"
+                                         CloseValueDataMember="Close"
+                                         LabelsVisibility="False" 
+                                         Brush="Green"
+                                         >
+                    <dxc:CandleStickSeries2D.ReductionOptions>
+                        <dxc:ReductionStockOptions ColorMode="OpenToCloseValue" 
+                                                   dxc:CandleStickSeries2D.FillMode="FilledOnReduction"    
+                                                   Level="CloseValue"
+                                                   Brush="Red"/>
+                    </dxc:CandleStickSeries2D.ReductionOptions>
+                    <dxc:CandleStickSeries2D.Model>
+                        <dxc:ThinCandleStick2DModel />
+                    </dxc:CandleStickSeries2D.Model>
+                </dxc:CandleStickSeries2D>
+                <dxc:XYDiagram2D.AxisX>
+                    <dxc:AxisX2D>
+                        <dxc:AxisX2D.Label>
+                            <dxc:AxisLabel TextPattern="{}{A:MMMM d}"/>
+                        </dxc:AxisX2D.Label>
+                        <dxc:AxisX2D.DateTimeScaleOptions>
+                            <dxc:AutomaticDateTimeScaleOptions SkipRangesWithoutPoints="True"/>
+                        </dxc:AxisX2D.DateTimeScaleOptions>
+                    </dxc:AxisX2D>
+                </dxc:XYDiagram2D.AxisX>
+                <dxc:XYDiagram2D.AxisY>
+                    <dxc:AxisY2D>
+                        <dxc:AxisY2D.WholeRange>
+                            <dxc:Range dxc:AxisY2D.AlwaysShowZeroLevel="False"/>
+                        </dxc:AxisY2D.WholeRange>
+                    </dxc:AxisY2D>
+                </dxc:XYDiagram2D.AxisY>
+            </dxc:XYDiagram2D>
+        </dxc:ChartControl>
+    </Grid>
+</Window>
